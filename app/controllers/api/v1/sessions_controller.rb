@@ -1,5 +1,7 @@
 class Api::V1::SessionsController < Api::V1::ApplicationController
 
+  before_action :authenticate_application, only: [:create]
+
   def create
     @user = User.find_by_email(params[:email])
     if @user.present?

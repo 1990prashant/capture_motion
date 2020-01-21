@@ -22,4 +22,13 @@ module Authenticable
       end
     end
 
+    def authenticate_application
+      if params[:app_id] == APP_ID && params[:app_secret] == APP_SECRET
+        return true
+      else
+        @errors << "Invalid source"
+        api_response
+      end
+    end
+
 end
